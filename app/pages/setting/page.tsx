@@ -15,8 +15,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-
+import { useState } from "react";
 function Settings() {
+  const [userName, setUserName] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [backColor, setbackColor] = useState<string>();
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
       <Card className="w-full max-w-lg">
@@ -27,17 +30,26 @@ function Settings() {
         <CardContent className="space-y-6">
           <div className="space-y-2">
             <Label>Username</Label>
-            <Input placeholder="Enter username" />
+            <Input
+              placeholder="Enter username"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </div>
 
           <div className="space-y-2">
             <Label>Email</Label>
-            <Input type="email" placeholder="Enter email" />
+            <Input
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
 
           <div className="space-y-2">
             <Label>Theme</Label>
-            <Select>
+            <Select onValueChange={(value) => setbackColor(value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Select theme" />
               </SelectTrigger>
@@ -49,8 +61,8 @@ function Settings() {
           </div>
         </CardContent>
 
-        <CardFooter className="justify-end">
-          <Button>Save</Button>
+        <CardFooter className="justify-end ">
+          <Button className="cursor-pointer">Save</Button>
         </CardFooter>
       </Card>
     </div>
